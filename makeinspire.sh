@@ -27,6 +27,9 @@ done
 lint_inspire_xml() {
 for x in $(cd ${outputdir}; ls *19139.xml) ; do
 	xmllint --noout ${outputdir}/$x
+	if [ "0" != $(grep -c "> " ${outputdir}/$x) ] ; then
+	    echo "$x: untrimmed entries"
+	fi
 done
 }
 
